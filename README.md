@@ -12,7 +12,7 @@ engine has better performance.
 - Study graph computing performance of different architecture of ArangoDb. Experimented with
 Breadth First Search and pagerank algorithms in cluster architecture and stand-alone, and con-
 cluded that cluster architecture has better performance.
-##Research on end-to-end image text recognition based on deep learning
+##  Research on end-to-end image text recognition based on deep learning
 - it contains Docker file and AI model source code.
 - Achieved deep learning model collaborative computing based on Nvida-docker container. Used
 CPTN and CRNN model to convert unstructured image data into structured Chinese text data.
