@@ -1,0 +1,309 @@
+FOR vertex 
+    IN 0..2
+    ANY 'male/bob' 
+    GRAPH 'social' 
+    OPTIONS {
+    uniqueVertices:"global",
+    bfs:true
+    }
+    return vertex
+
+FOR vertex 
+    IN 0..10
+    ANY 'nodes/5443371'
+    GRAPH 'twitter' 
+    OPTIONS {
+    uniqueVertices:"global",
+    bfs:true
+    }
+    return vertex
+BFS
+SORT
+CONCAT
+FOR v IN airports
+    SORT v.lat DESC
+    limit 5
+  RETURN v
+
+CONCAT("fir", "st")
+
+Create edge
+FOR v IN male
+    let a=v.name
+    let b= "1"
+    let c="/"
+    let h=CONCAT(a,c)
+    let d=CONCAT(h,b)
+    INSERT {"_from": d, "_to":d} INTO test
+
+
+var i=41652231
+var fir="INSERT {'_key': "
+var sed
+var fin
+for (var j=1404091;j<i;j++){
+var sed= fir+"'"+j+"'" 
+var fin =sed+" } INTO nodes"
+print(fin)
+db._query(fin);
+}
+
+
+db._query(fin);
+
+for (var j=0;j<i;j++){db._query("INSERT {'_key': "+"'"+j+"'"+" } INTO nodes");}
+
+
+db._query("INSERT {'_key': '928110' } INTO nodes")
+
+
+db._query("FOR v IN rorigin limit 5 RETURN v")
+
+
+db._query("FOR vertex  IN 0..3 ANY 'nodes/5443371' GRAPH 'twitter' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex").getExtra();
+
+ OPTIONS {
+    uniqueVertices:"global",
+    bfs:true
+    }
+
+db._explain("FOR vertex  IN 0..2 ANY 'nodes/5443371' GRAPH 'twitter' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex");
+
+
+var stmt = db._createStatement("FOR vertex  IN 0..2 ANY 'male/bob' GRAPH 'social' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex");
+
+var stmt = db._createStatement("FOR vertex  IN 0..4 ANY 'nodes/5443371' GRAPH 'twitter' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex");
+stmt.parse();
+
+pagerank
+var pregel = require("@arangodb/pregel");
+handle=pregel.start("pagerank", "social", {maxGSS: 100000, threshold:0.00000001})
+handle=pregel.start("pagerank", "flights", {maxGSS: 100000, threshold:0.00000001})
+handle=pregel.start("pagerank", "twitter", {maxGSS:1, threshold:0.0000001})
+pregel.status(handle);
+
+stmt = db._createStatement({"query":"FOR vertex  IN 0..200000 ANY 'male/bob' GRAPH 'social' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex",options:{"profile": true}});
+
+arangosh> var c = stmt.execute();
+arangosh> c.getExtra();
+
+arangoexport --type csv --collection test --fields _key,_id,_rev,_from,_to
+arangoexport --server.endpoint tcp://10.61.2.206:8529 --type csv --collection rorigin --fields _key,_id,_rev,_from,_to
+IMPORT
+arangoimp --file  airports.csv  --collection airports --create-collection true --type csv
+
+arangoimp --file  testCSV.csv  --collection nodes1 --create-collection true --type csv
+
+arangoimp --file flights.csv  --collection flights --create-collection true --type csv --creatvar pregel = require("@arangodb/pregel");e-collection-type edge
+
+arangoimp --from-collection-prefix nodes --to-collection-prefix nodes --file insert.csv  --collection rorigin1 --create-collection true --type csv --create-collection-type edge --separator '\t'
+
+
+arangoimp  --from-collection-prefix nodes --to-collection-prefix nodes --file insert.csv --translate "_from=vertex" --collection rorigintranslate --create-collection true --type csv  --create-collection-type edge --separator '\t'
+
+arangoimp --file insert.csv  --collection sert2 --create-collection true --type csv --separator '\t'
+arangoimp --file tesaa  --collection test  --type csv --separator '\t'
+_from	_to
+
+sed -e "1i \"_from\",\"_to\"" -i insert.csv
+
+sed -e "1i _from\t_to" -i insert.csv
+
+sed -e "1i \"f\",\"t\"" -i insert.csv
+删除文档的第一行
+sed -i '1d' <file>
+实际部署TWITTER数据集
+启动rocksdb
+sudo arangod --server.endpoint tcp://10.61.2.206:8529 --http.keep-alive-timeout 10000000 --server.storage-engine rocksdb --rocksdb.transaction-lock-timeout 300000
+sudo arangod --server.endpoint tcp://10.61.2.207:8529 --http.keep-alive-timeout 10000000 --server.storage-engine rocksdb --rocksdb.transaction-lock-timeout 300000
+sudo arangod --server.endpoint tcp://10.61.2.206:8529 --http.keep-alive-timeout 10000000 --database.directory /home/gaoziyang/realdb --server.storage-engine rocksdb --rocksdb.transaction-lock-timeout 300000
+启动mmfile
+sudo arangod --server.endpoint tcp://10.61.2.206:8529 --http.keep-alive-timeout 10000000 --database.directory /home/gaoziyang/mmfiledb --server.storage-engine mmfiles 
+sudo arangod --server.endpoint tcp://10.61.2.206:8529 --http.keep-alive-timeout 10000000 --database.directory /home/gaoziyang/testimport --server.storage-engine mmfiles 
+
+强制停止
+kill -s 9 pid 
+
+import edge to mmfile
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --file rorigin.csv  --collection rorigin --create-collection true --type csv --create-collection-type edge
+mmfile下origin need memory 50GB graph + node 60GB
+import need memory 110GB
+导入数据集collection
+先导入为edge,名字为rorigin,记录原始的关系信息，一共两列，列名为  1	41652230
+arangoimp --threads 75 --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file twitter.csv  --collection rorigin --create-collection true --type csv --create-collection-type edge --separator '\t'
+--create-collection true  --create-collection-type edge
+import id
+arangoimp --threads 75 --server.endpoint tcp://10.61.2.206:8529  --file qaq1.csv  --collection nodes --create-collection true --type csv 
+arangoimp  --server.endpoint tcp://10.61.2.206:8529  --file qaq1.csv  --collection nodes --create-collection true --type csv 
+arangoimp  --server.endpoint tcp://10.61.2.206:8529  --file qaq2.csv  --collection nodes --create-collection true --type csv
+arangosh --server.endpoint tcp://10.61.2.206:8529 --server.request-timeout 100000000
+
+导入graph为twitter,nodes为结点集合,rorigin为边集合
+
+testimport
+arangoimp --threads 80 --server.endpoint tcp://10.61.2.206:8529  --from-collection-prefix nodes --to-collection-prefix nodes  --file twitter.csv  --collection rorigin --create-collection true --type csv --create-collection-type edge --separator '\t' --progress true
+
+arangodump
+arangodump --server.endpoint tcp://10.61.2.206:8529 --server.username root --server.database _system --collection rorigin  --output-directory "/home/gaoziyang/rocksdbdump"
+
+local 127
+arangodump --server.endpoint tcp://127.0.0.1:8529 --server.username root --server.password "123456" --server.database _system --collection sert  --output-directory "/home/gaochuyang/ucas/dump"
+
+
+SLACK
+
+I use arangoimp import the twitter-2010 dataset(about 25G,1.4 billion edges)into arangodb using MMFILE, it takes  three hours ,how can I make the import process faster ?I takes to long time ,how can I import twitter-2010 dataset  within 30 minutes? My server memory is 120GB,and has 40-core cpu
+
+
+@jingtiangao Can you please try to increase the number of threads for arangoimp with setting --threads to e.g. 4. Per default you have two threads, increasing it two 4 might help. The other option you should test is going with RocksDB as you storage engine. MMfiles might run into locking problems at some point. RocksDB doesn't (edited)
+
+@jingtiangao then you could try RocksDB as you storage engine. It only has document-level locks. This could decrease the import time
+
+
+分布式arangodb 10.61.2.206
+arangod --server.endpoint tcp://10.61.2.206:5001 --agency.my-address=tcp://10.61.2.206:5001 --server.authentication false --agency.activate true --agency.size 3 --agency.endpoint tcp://10.61.2.206:5001 --agency.supervision true --database.directory agency1 &
+arangod --server.endpoint tcp://10.61.2.206:5002 --agency.my-address=tcp://10.61.2.206:5002 --server.authentication false --agency.activate true --agency.size 3 --agency.endpoint tcp://10.61.2.206:5001 --agency.supervision true --database.directory agency2 &
+arangod --server.endpoint tcp://10.61.2.206:5003 --agency.my-address=tcp://10.61.2.206:5003 --server.authentication false --agency.activate true --agency.size 3 --agency.endpoint tcp://10.61.2.206:5001 --agency.supervision true --database.directory agency3 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8529 --cluster.my-address tcp://10.61.2.206:8529 --cluster.my-local-info db1 --cluster.my-role PRIMARY --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003   --server.storage-engine mmfiles --http.keep-alive-timeout 10000000 --database.directory primary1  &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8530 --cluster.my-address tcp://10.61.2.206:8530 --cluster.my-local-info db2 --cluster.my-role PRIMARY --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003  --server.storage-engine mmfiles --http.keep-alive-timeout 10000000 --database.directory primary2 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8528 --cluster.my-address tcp://10.61.2.206:8528 --cluster.my-local-info db3 --cluster.my-role PRIMARY --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003  --server.storage-engine mmfiles --http.keep-alive-timeout 10000000 --database.directory primary3 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8531 --cluster.my-address tcp://10.61.2.206:8531 --cluster.my-local-info coord1 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8532 --cluster.my-address tcp://10.61.2.206:8532 --cluster.my-local-info coord2 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator2 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8533 --cluster.my-address tcp://10.61.2.206:8533 --cluster.my-local-info coord3 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator3 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8534 --cluster.my-address tcp://10.61.2.206:8534 --cluster.my-local-info coord4 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator4 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8535 --cluster.my-address tcp://10.61.2.206:8535 --cluster.my-local-info coord5 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator5 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8536 --cluster.my-address tcp://10.61.2.206:8536 --cluster.my-local-info coord6 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator6 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8540 --cluster.my-address tcp://10.61.2.206:8540 --cluster.my-local-info coord7 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator7 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8538 --cluster.my-address tcp://10.61.2.206:8538 --cluster.my-local-info coord8 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator8 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8539 --cluster.my-address tcp://10.61.2.206:8539 --cluster.my-local-info coord9 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.206:5002 --cluster.agency-endpoint tcp://10.61.2.206:5003 --database.directory coordinator9 &
+
+10.61.2.127 
+standlone
+sudo arangod --server.endpoint tcp://10.61.2.127:8529 --http.keep-alive-timeout 10000000 --database.directory /home/gaoziyang/mmfiledb --server.storage-engine mmfiles 
+10.61.2.207
+sudo arangod --server.endpoint tcp://10.61.2.207:8529 --http.keep-alive-timeout 10000000 --database.directory /home/gaoziyang/mmfiledb --server.storage-engine mmfiles 
+
+分布式
+10.61.2.206
+arangod --server.endpoint tcp://10.61.2.206:5001 --agency.my-address=tcp://10.61.2.206:5001 --server.authentication false --agency.activate true --agency.size 3 --agency.endpoint tcp://10.61.2.206:5001 --agency.supervision true --database.directory agency1 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8529 --cluster.my-address tcp://10.61.2.206:8529 --cluster.my-local-info db1 --cluster.my-role PRIMARY --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.207:5001 --cluster.agency-endpoint tcp://10.61.2.127:5001   --server.storage-engine mmfiles --http.keep-alive-timeout 10000000 --database.directory primary1  &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.206:8531 --cluster.my-address tcp://10.61.2.206:8531 --cluster.my-local-info coord1 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.207:5001 --cluster.agency-endpoint tcp://10.61.2.127:5001 --database.directory coordinator &
+
+10.61.2.207
+arangod --server.endpoint tcp://10.61.2.207:5001 --agency.my-address=tcp://10.61.2.207:5001 --server.authentication false --agency.activate true --agency.size 3 --agency.endpoint tcp://10.61.2.206:5001 --agency.supervision true --database.directory agency1 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.207:8529 --cluster.my-address tcp://10.61.2.207:8529 --cluster.my-local-info db1 --cluster.my-role PRIMARY --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.207:5001 --cluster.agency-endpoint tcp://10.61.2.127:5001   --server.storage-engine mmfiles --http.keep-alive-timeout 10000000 --database.directory primary1  &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.207:8531 --cluster.my-address tcp://10.61.2.207:8531 --cluster.my-local-info coord1 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.207:5001 --cluster.agency-endpoint tcp://10.61.2.127:5001 --database.directory coordinator &
+
+10.61.2.127
+arangod --server.endpoint tcp://10.61.2.127:5001 --agency.my-address=tcp://10.61.2.127:5001 --server.authentication false --agency.activate true --agency.size 3 --agency.endpoint tcp://10.61.2.206:5001 --agency.supervision true --database.directory agency1 &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.127:8529 --cluster.my-address tcp://10.61.2.127:8529 --cluster.my-local-info db1 --cluster.my-role PRIMARY --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.207:5001 --cluster.agency-endpoint tcp://10.61.2.127:5001   --server.storage-engine mmfiles --http.keep-alive-timeout 10000000 --database.directory primary1  &
+arangod --server.authentication=false --server.endpoint tcp://10.61.2.127:8531 --cluster.my-address tcp://10.61.2.127:8531 --cluster.my-local-info coord1 --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://10.61.2.206:5001 --cluster.agency-endpoint tcp://10.61.2.207:5001 --cluster.agency-endpoint tcp://10.61.2.127:5001 --database.directory coordinator &
+以上有网络问题
+换用arangodb --ownAddress h01:4000
+
+换后的导入
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw3aa  --collection rorigin --type csv  --separator '\t'
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw3aa  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.207:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw3ab  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.127:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw3ac  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+#split csv file 
+split --lines=500000000   twitter.csv tw3
+
+#split csv file 
+split --lines=250000000   twitter.csv tw6
+
+split --lines=150000000   twitter.csv pregeltw6split
+
+split --lines=150000000   twitter.csv tw30
+
+split --lines=150000000   pregeltw6aa.csv pregeltw6splitlitterb
+
+split --lines=100000000   pregeltw6ab.csv pregeltw6splitlitterb
+
+split --lines=50000000   pregeltw6ac.csv pregeltw6splitlitterc
+#分布式导入
+arangoimp --server.endpoint tcp://10.61.2.206:8531 --from-collection-prefix nodes --to-collection-prefix nodes  --file tweetsaa  --collection rorigin --type csv  --separator '\t'
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8532 --from-collection-prefix nodes --to-collection-prefix nodes  --file tweetsab  --collection rorigin  --type csv --separator '\t'
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8533 --from-collection-prefix nodes --to-collection-prefix nodes  --file tweetsac  --collection rorigin  --type csv --separator '\t'
+
+tw10aa
+sed -e "1i _from\t_to" -i tw30ab
+sed -e "1i _from\t_to" -i tw30ac
+sed -e "1i _from\t_to" -i tw30ad
+sed -e "1i _from\t_to" -i tw30ae
+sed -e "1i _from\t_to" -i tw30af
+sed -e "1i _from\t_to" -i tw30ag
+sed -e "1i _from\t_to" -i tw30ah
+
+sed -e "1i _from\t_to" -i tw30ai &
+sed -e "1i _from\t_to" -i tw30aj 
+
+
+sed -e "1i _from\t_to" -i tw3aa
+sed -e "1i _from\t_to" -i tw3ab
+sed -e "1i _from\t_to" -i tw3ac
+
+arangoimp --server.endpoint tcp://10.61.2.206:8531 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10aa  --collection rorigin --type csv  --separator '\t'
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8532 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10ab  --collection rorigin  --type csv --separator '\t'
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8533 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10ac --collection rorigin  --type csv --separator '\t
+
+arangoimp --server.endpoint tcp://10.61.2.206:8534 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10ad --collection rorigin --type csv  --separator '\t'
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8535 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10ae  --collection rorigin  --type csv --separator '\t'
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8538 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10af  --collection rorigin  --type csv --separator '\t'
+
+arangoimp --server.endpoint tcp://10.61.2.206:8539 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10ag  --collection rorigin --type csv  --separator '\t'
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8540 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10ah  --collection rorigin  --type csv --separator '\t'
+
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8533 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw10ai  --collection rorigin  --type csv --separator '\t'
+
+# 5kwan 100shards
+arangoimp --server.endpoint tcp://10.61.2.206:8531 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30aa  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8532 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30ab  --collection rorigin  --type csv --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8533 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30ac --collection rorigin  --type csv --separator '\t  --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.206:8534 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30ad --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8535 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30ae  --collection rorigin  --type csv --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8538 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30af  --collection rorigin  --type csv --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.206:8539 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30ag  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8540 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30ah  --collection rorigin  --type csv --separator '\t' --create-collection true  --create-collection-type edge
+
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8533 --from-collection-prefix nodes --to-collection-prefix nodes  --file tw30ai  --collection rorigin  --type csv --separator '\t' --create-collection true  --create-collection-type edge
+
+#sharding
+#cluster ssh
+arangosh --server.endpoint tcp://10.61.2.206:8531 --server.request-timeout 100000000
+db._create("rorigin", {"numberOfShards": 2});
+
+
+ps -ef | grep arangod | grep -v arangod-mxm | cut -c 9-15 | xargs kill -9
+
+#rm -rf
+
+
+12.18 import
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file twitter.csv  --collection rorigin --type csv  --separator '\t'
+
+head 
+tail -n 10 
+
+
+

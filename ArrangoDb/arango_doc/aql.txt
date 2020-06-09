@@ -1,0 +1,113 @@
+FOR vertex 
+    IN 0..2
+    ANY 'male/bob' 
+    GRAPH 'social' 
+    OPTIONS {
+    uniqueVertices:"global",
+    bfs:true
+    }
+    return vertex
+
+
+BFS
+SORT
+CONCAT
+FOR v IN airports
+    SORT v.lat DESC
+    limit 5
+  RETURN v
+
+CONCAT("fir", "st")
+
+Create edge
+FOR v IN male
+    let a=v.name
+    let b= "1"
+    let c="/"
+    let h=CONCAT(a,c)
+    let d=CONCAT(h,b)
+    INSERT {"_from": d, "_to":d} INTO test
+
+
+db._query("FOR vertex  IN 0..100000 ANY 'male/bob' GRAPH 'social' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex").getExtra();
+
+ OPTIONS {
+    uniqueVertices:"global",
+    bfs:true
+    }
+
+db._explain("FOR vertex  IN 0..2 ANY 'male/bob' GRAPH 'social' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex");
+
+
+var stmt = db._createStatement("FOR vertex  IN 0..2 ANY 'male/bob' GRAPH 'social' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex");
+stmt.parse();
+
+pagerank
+var pregel = require("@arangodb/pregel");
+handle=pregel.start("pagerank", "social", {maxGSS: 100000, threshold:0.00000001})
+
+handle=pregel.start("pagerank", "twitter2", {maxGSS: 1, threshold:0.00000001,parallelism:30})
+handle=pregel.start("pagerank", "flights", {maxGSS: 100000, threshold:0.00000001})
+pregel.status(handle);
+
+stmt = db._createStatement({"query":"FOR vertex  IN 0..200000 ANY 'male/bob' GRAPH 'social' OPTIONS{uniqueVertices:'global',bfs:true}  return vertex",options:{"profile": true}});
+
+arangosh> var c = stmt.execute();
+arangosh> c.getExtra();
+
+
+IMPORT
+arangoimp --file  airports.csv  --collection airports --create-collection true --type csv
+
+arangoimp --file flights.csv  --collection flights --create-collection true --type csv --create-collection-type edge
+
+arangoimp --file insert.csv  --collection insert --create-collection true --type csv --create-collection-type edge
+
+sed -e "1i \"_from\",\"_to\"" -i insert.csv
+
+sed -e "1i \"f\",\"t\"" -i insert.csv
+删除文档的第一行
+sed -i '1d' <file>
+
+arangoDriver.startBatchMode();
+
+for(String line : lines)
+{
+  String[] data = line.split(",");
+
+  BaseDocument device = new BaseDocument();
+  BaseDocument phyAddress = new BaseDocument(); 
+  BaseDocument conn = new BaseDocument();
+
+  String keyDevice = data[0];
+  String handleDevice = "DeviceId/" + keyDevice; 
+
+  device.setDocumentKey(keyDevice);
+
+  device.addAttribute("device_id",data[0]);
+
+  String keyPhyAddress = data[1];
+  String handlePhyAddress = "PhysicalLocation/" + keyPhyAddress; 
+
+  phyAddress.setDocumentKey(keyPhyAddress);
+
+  phyAddress.addAttribute("address",data[1]);
+
+  final DocumentEntity<BaseDocument> from = arangoDriver.graphCreateVertex("testGraph", "DeviceId", device, null);       
+  final DocumentEntity<BaseDocument> to = arangoDriver.graphCreateVertex("testGraph", "PhysicalLocation", phyAddress, null);
+
+  arangoDriver.graphCreateEdge("testGraph", "DeviceId_PhysicalLocation", null, handleDevice, handlePhyAddress, null, null);
+
+}
+arangoDriver.executeBatch();
+
+#问题
+2017-12-04T20:55:14Z [17070] ERROR {cluster} ClusterComm::performRequests: got no answer from shard:s4023097:/_db/_system/_api/document?collection=s4023097&waitForSync=false&returnNew=false&returnOld=false with error 4
+2017-12-04T20:55:34Z [17070] ERROR {cluster} ClusterComm::performRequests: got no answer from shard:s4023097:/_db/_system/_api/document?collection=s4023097&waitForSync=false&returnNew=false&returnOld=false with error 4
+
+
+2017-12-04T20:55:26Z [22759] ERROR timeout in cluster operation
+
+
+
+

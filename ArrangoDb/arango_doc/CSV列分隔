@@ -1,0 +1,141 @@
+		删除文档的第一行
+sed -i '1d' <file>
+
+sed -i '1d' twitter.csv
+
+复制文档的第。。列到一个新文件里
+cat no1/test.csv no2/test.csv no3/test.csv | cut -d, -f1,4,7 > newtext.csv
+awk -F, '{print $1","$4","$7}' no1/test.csv no2/test.csv no3/test.csv > newtext.csv
+测试
+cat insert.csv insert.csv insert2.csv  | cut  -f1,2,1 > newtext.csv
+
+cat  insert.csv insert2.csv  | cut  -f1,2 > newtext.csv
+
+cat insert.csv   | cut --delimiter=\t  -f1 > newtext.csv
+
+awk -F  '{print $1\t$2}' insert.csv  insert2.csv > newtext.csv
+final
+cat no1/test.csv no2/test.csv no3/test.csv | cut -d, -f1,4,7 > newtext.csv
+
+最终的方案
+
+awk -F '\t'  '{print $1"\t"$2"\t"$1 }' insert.csv > newtext.csv
+
+awk -F '\t'  '{print $1"\t"$2"\t"$1 }' tw6aa.csv > pregeltw6aa.csv
+
+awk -F '\t'  '{print $1"\t"$2"\t"$1 }' tw6ab > pregeltw6ab.csv
+
+awk -F '\t'  '{print $1"\t"$2"\t"$1 }' tw6ac > pregeltw6ac.csv
+
+awk -F '\t'  '{print $1"\t"$2"\t"$1 }' tw6ad > pregeltw6ad.csv
+
+awk -F '\t'  '{print $1"\t"$2"\t"$1 }' tw6ae > pregeltw6ae.csv
+
+awk -F '\t'  '{print $1"\t"$2"\t"$1 }' tw6af > pregeltw6af.csv
+
+
+图大概划分
+把一个顶点的所有出度边都划分到一起，全部存储到一起，使用的方法是：
+_from _to vertex
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6aa.csv
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6ab.csv
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6ac.csv
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6ad.csv
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6ae.csv
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6af.csv
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6splitab
+
+pregeltw6splitlitterbab
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6splitlitterbab
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6splitlitterbac
+
+
+
+sed -e "1i _from\t_to\tvertex" -i pregeltw6splitlittercab
+sed -e "1i _from\t_to\tvertex" -i pregeltw6splitlittercac
+sed -e "1i _from\t_to\tvertex" -i pregeltw6splitlittercad
+sed -e "1i _from\t_to\tvertex" -i pregeltw6splitlittercae
+
+
+arangosh --server.endpoint tcp://10.61.2.206:8529 --server.request-timeout 100000000
+// Create main vertex collection: 
+db._create("nodes", {
+    shardKeys:['_key'],
+    numberOfShards: 30
+  });
+
+// Optionally create arbitrary additional vertex collections 
+db._create("additonal", {
+    distributeShardsLike:"nodes", 
+    numberOfShards:24
+  });
+
+// Create (one or more) edge-collections: 
+db._createEdgeCollection("rorigin", {
+    shardKeys:['vertex'],
+    distributeShardsLike:"nodes",
+    numberOfShards:30
+  });
+mpstat -P ALL 10  监控多核心
+
+arangoimp  --server.endpoint tcp://10.61.2.206:8529  --file qaq1.csv  --collection nodes --create-collection true --type csv 
+arangoimp  --server.endpoint tcp://10.61.2.206:8529  --file qaq2.csv  --collection nodes --create-collection true --type csv
+
+arangoimp --server.endpoint tcp://10.61.2.127:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6aa.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.127:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6ab.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.127:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6ac.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6ad.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6ae.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6af.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+
+
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6ad.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+pregeltw6splitaa
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6splitab --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6splitlitterbac  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6af.csv  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+
+arangoimp --server.endpoint tcp://10.61.2.206:8529 --from-collection-prefix nodes --to-collection-prefix nodes  --file pregeltw6splitlitterbac  --collection rorigin --type csv  --separator '\t' --create-collection true  --create-collection-type edge
+
+
+var pregel = require("@arangodb/pregel");
+var handle=pregel.start("pagerank", "twitter2", {store:false,maxGSS: 1, threshold:0.00000001})
+pregel.status(handle);
+
+
+ var execution = pregel.start("pagerank", {vertexCollections:['nodes','nodes'], edgeCollection:'rorigin'}, {maxGSS: 1, threshold:0.00000001,parallelism:30});
+
+
+var execution = pregel.start("pagerank", {vertexCollections:['nodes','nodes'], edgeCollection:'rorigin'}, {maxGSS: 1, threshold:0.00000001});
+
+var execution = pregel.start("pagerank", {vertexCollections:['nodes','nodes'], edgeCollection:'rorigin'}, {maxGSS: 1, threshold:0.00000001});
+pregel.status(execution);
+var execution = pregel.start("pagerank", {vertexCollections:["nodes"], edgeCollections:["rorigin"]}, {});
+
+
+
+
+
+

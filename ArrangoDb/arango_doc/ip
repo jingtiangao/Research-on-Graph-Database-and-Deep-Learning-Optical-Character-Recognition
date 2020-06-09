@@ -1,0 +1,52 @@
+https://github.com/tensorflow/models/tree/master/research/attention_ocr
+
+曙光：10.61.2.206
+10.61.2.127
+10.61.2.207
+gaoziyang
+gaoziyang
+
+ssh gaoziyang@10.61.2.207
+ssh gaoziyang@10.61.2.127
+ssh gaoziyang@10.61.2.206
+
+scp arangodb3e-3.2.8-1.x86_64.rpm  gaoziyang@10.61.2.127:/home/gaoziyang/arangorpm
+scp arangodb3e-3.2.8-1.x86_64.rpm  gaoziyang@10.61.2.207:/home/gaoziyang/arangorpm	
+
+a 206
+scp tw3ab gaoziyang@10.61.2.207:/home/gaoziyang/dataset
+scp tw3ac gaoziyang@10.61.2.127:/home/gaoziyang/dataset
+
+scp arangoimprorigin1.jar gaoziyang@10.61.2.206:/home/gaoziyang/dataset_old
+
+scp pregeltw6aa.csv  gaoziyang@10.61.2.127:/home/gaoziyang/dataset
+
+scp pregeltw6ab.csv  gaoziyang@10.61.2.127:/home/gaoziyang/dataset
+
+scp pregeltw6ac.csv  gaoziyang@10.61.2.127:/home/gaoziyang/dataset
+
+pregeltw6splitlittercaa
+
+java -jar arangoimprorigin.jar pregeltw6splitlittercaa
+
+
+java -jar arangoimprorigin.jar pregeltw6splitlittercab
+
+java -jar arangoimprorigin.jar pregeltw6splitlittercac
+
+
+nohup java -jar arangoimprorigin.jar pregeltw6aa.csv &
+
+nohup java -jar arangoimprorigin1.jar pregeltw6ab.csv &
+
+nohup java -jar arangoimprorigin1.jar pregeltw6ac.csv &
+
+
+
+nohup java -jar arangoimprorigin2.jar pregeltw6ad.csv &
+
+nohup java -jar arangoimprorigin2.jar pregeltw6ae.csv &
+
+nohup java -jar arangoimprorigin2.jar pregeltw6af.csv &
+
+java -jar arangoimprorigin1.jar pregeltw6ab.csv
